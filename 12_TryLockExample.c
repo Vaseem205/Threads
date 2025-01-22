@@ -1,3 +1,12 @@
+
+/*
+
+If you have a pool of identical resources protected by multiple mutexes (e.g., a set of buffers, data structures, or work queues), 
+using pthread_mutex_trylock can allow threads to "probe" for an available mutex rather than waiting on a single, potentially busy one.
+
+*/
+
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <unistd.h>
