@@ -102,7 +102,7 @@ OUTPUT:
 Could not acquire lock
 Could not acquire lock
 Could not acquire lock
-Lock Acquired
+Lock Acquired                       // 3 threads couldn't acquire the lock, only last thread was able to acquire it
 
 
 NOTE:

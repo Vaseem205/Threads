@@ -237,15 +237,17 @@ void* fuel_filling(void* arg) {
         printf("Filled fuel in petrol station........................ %d\n", fuel);
         pthread_mutex_unlock(&mutexFuel);
         pthread_cond_broadcast(&condFuel);
-        sleep(1);
+        sleep(5);
+        printf("slept for 5 seconds\n");    //giving time to execute th[5] threads
+        printf("\n");
     }
 }
 
 void* car(void* arg) {
+    
     pthread_mutex_lock(&mutexFuel);
 
-    int a = *(int *)arg;
-
+    // int a = *(int *)arg;
     // printf("a: %d\n", a);
 
     while (fuel < 40) {
@@ -253,7 +255,7 @@ void* car(void* arg) {
         printf("No fuel. Car is waiting to get it filled...\n");
         printf("----------------------------------------------------\n");
         pthread_cond_wait(&condFuel, &mutexFuel);
-        printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion\n");
+        printf("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel\n");
         
     }
     fuel -= 40;
@@ -308,80 +310,93 @@ No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
+slept for 5 seconds
+
 Filled fuel in petrol station........................ 60
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 |||||||||||||||||||||||||||||||||||||||||||||||||||||
 Got fuel inside car. Now left fuel in petrol station: 20
 |||||||||||||||||||||||||||||||||||||||||||||||||||||
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
+slept for 5 seconds
+
 Filled fuel in petrol station........................ 50
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 |||||||||||||||||||||||||||||||||||||||||||||||||||||
 Got fuel inside car. Now left fuel in petrol station: 10
 |||||||||||||||||||||||||||||||||||||||||||||||||||||
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
+slept for 5 seconds
+
 Filled fuel in petrol station........................ 40
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 |||||||||||||||||||||||||||||||||||||||||||||||||||||
 Got fuel inside car. Now left fuel in petrol station: 0
 |||||||||||||||||||||||||||||||||||||||||||||||||||||
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
+slept for 5 seconds
+
 Filled fuel in petrol station........................ 30
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
+slept for 5 seconds
+
 Filled fuel in petrol station........................ 60
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 |||||||||||||||||||||||||||||||||||||||||||||||||||||
 Got fuel inside car. Now left fuel in petrol station: 20
 |||||||||||||||||||||||||||||||||||||||||||||||||||||
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 ----------------------------------------------------
 No fuel. Car is waiting to get it filled...
 ----------------------------------------------------
+slept for 5 seconds
+
 Filled fuel in petrol station........................ 50
-!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!calling petrol statiion
+!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!pthread_cond_wait() called petrol station to increase the fuel
 |||||||||||||||||||||||||||||||||||||||||||||||||||||
 Got fuel inside car. Now left fuel in petrol station: 10
 |||||||||||||||||||||||||||||||||||||||||||||||||||||
+slept for 5 seconds
 
 
 */
