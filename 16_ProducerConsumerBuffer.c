@@ -46,6 +46,7 @@ void* producer(void* args) {
         sem_wait(&semEmpty);
         pthread_mutex_lock(&mutexBuffer);
         buffer[count] = x;
+        printf("PRODUCER:\tbuffer[%d] = %d\n",count, x);
         count++;
         pthread_mutex_unlock(&mutexBuffer);
         sem_post(&semFull);
@@ -60,12 +61,17 @@ void* consumer(void* args) {
         sem_wait(&semFull);
         pthread_mutex_lock(&mutexBuffer);
         y = buffer[count - 1];
+
+        // Consume
+        printf("CONSUMER:\tGot %d\t\tfrom buffer[%d]\n", y, count-1);
+        
         count--;
         pthread_mutex_unlock(&mutexBuffer);
         sem_post(&semEmpty);
 
-        // Consume
-        printf("Got %d\n", y);
+        
+        
+        
         sleep(1);
     }
 }
@@ -104,18 +110,28 @@ int main(int argc, char* argv[]) {
 
 /*
 
-Got 21
-Got 36
-Got 0
-Got 48
-<slept for 1 second>
-Got 94
-Got 19
-Got 55
-Got 19
-......
-.....
+PRODUCER:	buffer[0] = 89
+PRODUCER:	buffer[1] = 14
+CONSUMER:	Got 14		from buffer[1]
+CONSUMER:	Got 89		from buffer[0]
+PRODUCER:	buffer[0] = 74
+CONSUMER:	Got 74		from buffer[0]
+PRODUCER:	buffer[0] = 51
+CONSUMER:	Got 51		from buffer[0]
+<sleeps for 1 sec>
 ...
-.
+...
+...
+
+
+NOTE:
+
+4 producers get in parallelly and update the buffer (at that time sem_wait(&semEmpty); will do 4 semEmpty--),
+those threads then do semFull++ (remember we initialized it with 0). as semFull semaphore has 4 in it, it'll
+go and execute consumer thread. 4 threads enter consumer thread and does semFull--, by the end of it, they'll
+increment semEmpty++ 4 times.
+
+And, mutex is used just to make sure that, while producer is updating something in buffer, the consumer thread
+should not consume anything from buffer.
 
 */
